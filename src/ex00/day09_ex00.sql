@@ -26,14 +26,12 @@ FROM person_audit;
 
 -- №3
 CREATE FUNCTION fnc_trg_person_insert_audit() RETURNS TRIGGER AS $person_audit$
-    BEGIN
-        IF (tg_op = 'INSERT')
-        THEN
-            INSERT INTO person_audit(created, type_event, row_id, name, age, gender, address)
-            VALUES(now(), 'I', NEW.id, NEW.name, NEW.age, NEW.gender, NEW.address);
-        END IF;
-        RETURN NULL;
-    END;
+BEGIN
+    INSERT INTO person_audit(created, type_event, row_id, name, age, gender, address)
+    VALUES (now(), 'I', NEW.id, NEW.name, NEW.age, NEW.gender, NEW.address);
+    RETURN NULL;
+END;
+    
 $person_audit$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trg_person_insert_audit
