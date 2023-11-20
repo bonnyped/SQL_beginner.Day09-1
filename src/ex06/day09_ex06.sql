@@ -1,4 +1,4 @@
-DROP FUNCTION fnc_person_visits_and_eats_on_date(pperson varchar, pprice numeric, pdate date);
+DROP FUNCTION IF EXISTS fnc_person_visits_and_eats_on_date(pperson varchar, pprice numeric, pdate date);
 
 CREATE OR REPLACE FUNCTION fnc_person_visits_and_eats_on_date(pperson varchar DEFAULT 'Dmitriy', pprice numeric DEFAULT 500, pdate date DEFAULT '2022-01-08')
     RETURNS TABLE (pizzeria_name varchar)
